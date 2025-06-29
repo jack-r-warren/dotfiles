@@ -1,10 +1,14 @@
+if command -v apt >/dev/null 2>&1
+then
+    sudo apt update
+fi
+
 # zsh
 if command -v apt >/dev/null 2>&1
 then
     sudo apt install zsh
 else
     brew install zsh
-    chsh -s $(which zsh)
 fi
 
 # fzf
@@ -16,7 +20,8 @@ else
 fi
 
 # Oh My Zsh
-curl	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+rm -rf ~/.oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
 
 # Powerlevel10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
